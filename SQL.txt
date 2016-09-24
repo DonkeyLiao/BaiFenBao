@@ -1,0 +1,16 @@
+1.设置字段默认值 20160921
+ALTER TABLE `bfb_data`.`data_problem_index`   
+  CHANGE `problem_id` `problem_id` INT(10) UNSIGNED DEFAULT 0  NOT NULL   COMMENT '当前已完成的题目最大ID';
+
+1.创建分类表 20160921  
+  CREATE TABLE `base_problem_type` (
+  `type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '父级ID',
+  `order_num` int(8) unsigned NOT NULL DEFAULT '500' COMMENT '排序',
+  `type_pnum` varchar(50) NOT NULL DEFAULT '' COMMENT '自动编号',
+  `type_name` varchar(30) NOT NULL DEFAULT '' COMMENT '名称',
+  `level_num` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '层级',
+  PRIMARY KEY (`type_id`),
+  KEY `index_parentid` (`parent_id`),
+  KEY `index_type_pnum` (`type_pnum`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
